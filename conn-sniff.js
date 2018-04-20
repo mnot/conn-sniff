@@ -108,13 +108,11 @@ c.on('packet', function (nbytes, trunc) {
             openConns[dstaddr].delete(srcport)
             delete openPorts[dstaddr]
             log('FIN', dstaddr, connId)
-            byteCounts[connId] = [0, 0]
           }
           if (isRst) {
             openConns[dstaddr].delete(srcport)
             delete openPorts[dstaddr]
             log('RST', dstaddr, connId)
-            byteCounts[connId] = [0, 0]
           }
         } else { // inbound
           connId = ret.info.dstport + ' ' + srcaddr
