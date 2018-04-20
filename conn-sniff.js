@@ -113,7 +113,7 @@ c.on('packet', function (nbytes, trunc) {
           if (isRst) {
             openConns[dstaddr].delete(srcport)
             delete openPorts[dstaddr]
-            log('FIN', dstaddr, connId)
+            log('RST', dstaddr, connId)
             byteCounts[connId] = [0, 0]
           }
         } else { // inbound
