@@ -43,7 +43,7 @@ function log (type, dstaddr, connId) {
       data['out'] = byteCounts[connId][1]
       output += sprintf(' out bytes: %(out)7i in bytes: %(in)7i', data)
     }
-    console.log(output)    
+    console.log(output)
   }, 100)
 }
 
