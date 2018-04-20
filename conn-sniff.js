@@ -30,13 +30,13 @@ var byteCounts = {}
 var hostNames = new Proxy({}, defaultHandler)
 
 function log (type, dstaddr, connId) {
+  var data = {
+    'type': type,
+    'open': openConns[dstaddr].size,
+    'ttl': ttlConns[dstaddr]
+  }
   setTimeout(function () {
-    var data = {
-      'type': type,
-      'dst': hostNames[dstaddr],
-      'open': openConns[dstaddr].size,
-      'ttl': ttlConns[dstaddr]
-    }
+    data['dst'] = hostNames[dstaddr]
     var output = sprintf('%(type)5s %(dst)60s open: %(open)3i ttl: %(ttl)3i', data)
     if (connId) {
       data['in'] = byteCounts[connId][0]
@@ -44,7 +44,7 @@ function log (type, dstaddr, connId) {
       output += sprintf(' out bytes: %(out)7i in bytes: %(in)7i', data)
     }
     console.log(output)
-  }, 100)
+  }, 200)
 }
 
 function getProcess (srcPort) {
